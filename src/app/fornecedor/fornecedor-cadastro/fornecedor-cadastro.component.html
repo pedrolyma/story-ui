@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="p-grid">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+      <!-- <div class="p-col-12"> -->
+      <h2 class="top-tela">Novo Fornecedor</h2>
+      <!-- </div> -->
+
+      <div class="p-col-12 p-fluid">
+        <label>Razão Social</label>
+        <input pInputText type="text" name="razaoSocial" [(ngModel)]="fornecedor.razaoSocial" #razaoSocial="ngModel"
+          required minlength="5">
+
+        <!-- <app-message [control]="razaoSocial" error="required"
+          text="Informe a descrição"></app-message>
+        <app-message [control]="razaoSocial" error="minlength"
+          text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message> -->
+      </div>
+      <div class="p-col-12 p-fluid">
+        <label>Nome Fantasia</label>
+        <input pInputText type="text" name="nomeFantasia" [(ngModel)]="fornecedor.nomeFantasia" #nomeFantasia="ngModel"
+          required minlength="5">
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>CNPJ</label>
+        <p-inputMask name="cnpjFornecedor" [(ngModel)]="fornecedor.cnpjFornecedor" #cnpjFornecedor="ngModel"
+          mask="99.999.999/9999-99"></p-inputMask>
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Inscrição</label>
+        <input pInputText type="text" name="inscricaoFornecedor" [(ngModel)]="fornecedor.inscricaoFornecedor"
+          #inscricaoFornecedor="ngModel" required minlength="5">
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Site</label>
+        <input pInputText type="text" name="siteFornecedor" [(ngModel)]="fornecedor.siteFornecedor"
+          #siteFornecedor="ngModel" required minlength="5">
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Telefone</label>
+        <p-inputMask type="text" name="telefoneFornecedor" [(ngModel)]="fornecedor.telefoneFornecedor"
+          #telefoneFornecedor="ngModel" mask="99 9999-9999"></p-inputMask>
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>WhatsApp</label>
+        <p-inputMask type="text" name="whatsAppFornecedor" [(ngModel)]="fornecedor.whatsAppFornecedor"
+          #whatsAppFornecedor="ngModel" mask="99 9999-9999"></p-inputMask>
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Email</label>
+        <input pInputText type="text" name="emailFornecedor" [(ngModel)]="fornecedor.emailFornecedor"
+          #emailFornecedor="ngModel" required minlength="5">
+      </div>
+      <div class="p-col-2 p-fluid">
+        <label>Cep</label>
+        <p-inputMask type="text" name="cepFornecedor" [(ngModel)]="fornecedor.cepFornecedor" #cepFornecedor="ngModel"
+          mask="99.999-999"></p-inputMask>
+      </div>
+      <div class="p-col-10 p-fluid">
+        <label>Logradouro</label>
+        <input pInputText type="text" name="logradouroFornecedor" [(ngModel)]="fornecedor.logradouroFornecedor"
+          #logradouroFornecedor="ngModel" required minlength="5">
+      </div>
+      <div class="p-col-6 p-fluid">
+        <label>Bairro</label>
+        <input pInputText type="text" name="bairroFornecedor" [(ngModel)]="fornecedor.bairroFornecedor"
+          #bairroFornecedor="ngModel" required minlength="5">
+      </div>
+      <div class="p-col-5 p-fluid">
+        <label>Cidade</label>
+        <input pInputText type="text" name="cidadeFornecedor" [(ngModel)]="fornecedor.cidadeFornecedor"
+          #cidadeFornecedor="ngModel" required minlength="5">
+      </div>
+      <div class="p-col-1 p-fluid">
+        <label>UF</label>
+        <p-dropdown [options]="estados" [(ngModel)]="selectedUF" [showTransitionOptions]="'0ms'"
+          [hideTransitionOptions]="'0ms'"></p-dropdown>
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Banco</label>
+        <input pInputText type="text" name="bancoFornecedor" [(ngModel)]="fornecedor.bancoFornecedor"
+          #bancoFornecedor="ngModel" required minlength="5">
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Agencia</label>
+        <input pInputText type="text" name="agenciaFornecedor" [(ngModel)]="fornecedor.agenciaFornecedor"
+          #agenciaFornecedor="ngModel" required minlength="5">
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Conta</label>
+        <input pInputText type="text" name="contaFornecedor" [(ngModel)]="fornecedor.contaFornecedor"
+          #contaFornecedor="ngModel" required minlength="5">
+      </div>
+      <div class="p-col-12 p-fluid">
+        <label>Titular</label>
+        <input pInputText type="text" name="titularFornecedor" [(ngModel)]="fornecedor.titularFornecedor"
+          #titularFornecedor="ngModel" required minlength="5">
+      </div>
+      <div class="p-col-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Nova" class="ui-button-info" (click)="nova(f)"></button>
+
+        <a routerLink="/fornecedores">Voltar para a pesquisa</a>
+      </div>
+  </div>
+
+  </form>
+</div>
+

@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="p-grid">
+    <form (ngSubmit)="pesquisar()" autocomplete="off">
+      <!-- <div class="p-col-12"> -->
+        <h2 class="top-tela">FORNECEDORES</h2>
+      <!-- </div> -->
+      <div class="p-col-12 p-fluid">
+        <label style="display: block;">Razão Social</label>
+        <input pInputText type="text" name="razaoSocial" [(ngModel)]="filtro.razaoSocial">
+      </div>
+      <div class="p-col-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <p-table [value]="fornecedores" [responsive]="true"
+           [paginator]="true" [rows]="filtro.itensPorPagina"
+           [lazy]="true" [totalRecords]="totalRegistros"
+           (onLazyLoad)="aoMudarPagina($event)" #tabela>
+           <!-- [showCurrentPageReport]="true" #tabela>
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]"#tabela> -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 90px;">Codigo</th>
+                    <th>Razão Social</th>
+                    <th>Nome Fantasia</th>
+                    <th>Telefone</th>
+                    <th>WhatsApp</th>
+                    <th>Email</th>
+                    <th>Site</th>
+                    <th>CNPJ</th>
+                    <th>Inscrição</th>
+                    <th>Cep</th>
+                    <th>Logradouro</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Banco</th>
+                    <th>Agencia</th>
+                    <th>Conta</th>
+                    <th>Titular</th>
+                    <th style="width: 45px;">Edit</th>
+                    <th style="width: 45px;">delete</th>
+                </tr>
+            </ng-template>
+            <ng-template let-fornecedor pTemplate="body" >
+                <tr>
+                    <td>{{ fornecedor.codigo }}</td>
+                    <td>{{ fornecedor.razaoSocial }}</td>
+                    <td>{{ fornecedor.nomeFantasia }}</td>
+                    <td>{{ fornecedor.telefoneFornecedor }}</td>
+                    <td>{{ fornecedor.whatsAppFornecedor }}</td>
+                    <td>{{ fornecedor.emailFornecedor }}</td>
+                    <td>{{ fornecedor.siteFornecedor }}</td>
+                    <td>{{ fornecedor.cnpjFornecedor }}</td>
+                    <td>{{ fornecedor.inscricaoFornecedor }}</td>
+                    <td>{{ fornecedor.cepFornecedor }}</td>
+                    <td>{{ fornecedor.logradouroFornecedor }}</td>
+                    <td>{{ fornecedor.bairroFornecedor }}</td>
+                    <td>{{ fornecedor.cidadeFornecedor }}</td>
+                    <td>{{ fornecedor.bancoFornecedor }}</td>
+                    <td>{{ fornecedor.agenciaFornecedor }}</td>
+                    <td>{{ fornecedor.contaFornecedor }}</td>
+                    <td>{{ fornecedor.titularFornecedor }}</td>
+                    <td class="col-acoes">
+                      <button pButton icon="pi pi-pencil" pTooltip="Editar"
+                      tooltipPosition="top" [routerLink]="['/fornecedores', fornecedor.codigo]"></button>
+                      <button pButton icon="pi pi-trash" pTooltip="Excluir"
+                      tooltipPosition="top" (click)="confirmaExclusao(fornecedor)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="6">Nenhum Registro Encontrado</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <a pButton label="Novo Fornecedor" pTooltip="Cadastrar Um Novo Fornecedor"
+          tooltipPosition="top" routerLink="/fornecedores/nova"></a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

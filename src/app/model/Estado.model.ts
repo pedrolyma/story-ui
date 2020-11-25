@@ -1,0 +1,16 @@
+export enum Estados {
+  MG,
+  SP,
+  RJ,
+  BA,
+  SC,
+  RS,
+  PA,
+  MT,
+  MS,
+  PE,
+  PI,
+  PB,
+  DF,
+  RR,
+}

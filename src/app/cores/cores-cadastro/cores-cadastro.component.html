@@ -1,0 +1,31 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+    <div class="p-grid">
+      <!-- <div class="p-col-12"> -->
+        <h1 class="top-tela">Nova Cor</h1>
+      <!-- </div> -->
+
+      <div class="p-col-12 p-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="descricao"
+          [(ngModel)]="cores.descricao"
+          #descricao="ngModel" required minlength="5">
+
+        <!-- <app-message [control]="descricao" error="required"
+          text="Informe a descrição"></app-message>
+        <app-message [control]="descricao" error="minlength"
+          text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message> -->
+      </div>
+
+      <div class="p-col-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Nova" class="ui-button-info"
+          (click)="nova(f)"></button>
+
+        <a routerLink="/cores ">Voltar para a pesquisa</a>
+      </div>
+    </div>
+
+  </form>
+</div>

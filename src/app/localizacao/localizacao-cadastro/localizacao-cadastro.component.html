@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="p-grid">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+      <!-- <div class="p-col-12"> -->
+      <h2 class="top-tela">Nova Localização</h2>
+      <!-- </div> -->
+
+      <div class="p-col-12 p-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="descricao" [(ngModel)]="localizacao.descricao" #descricao="ngModel" required
+          minlength="5">
+
+        <!-- <app-message [control]="descricao" error="required"
+          text="Informe a descrição"></app-message>
+        <app-message [control]="descricao" error="minlength"
+          text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message> -->
+      </div>
+
+      <div class="p-col-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Nova" class="ui-button-info" (click)="nova(f)"></button>
+
+        <a routerLink="/localizacao">Voltar para a pesquisa</a>
+      </div>
+  </div>
+
+  </form>
+</div>
+

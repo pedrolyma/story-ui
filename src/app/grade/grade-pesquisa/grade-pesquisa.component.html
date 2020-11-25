@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="p-grid">
+    <form (ngSubmit)="pesquisar()" autocomplete="off">
+
+      <!-- <div class="p-col-12"> -->
+      <h1 class="top-tela">GRADE</h1>
+      <!-- </div> -->
+      <div class="p-col-12 p-fluid">
+        <label style="display: block;">Descrição</label>
+        <input pInputText type="text" name="intervalo" [(ngModel)]="filtro.intervalo">
+      </div>
+      <div class="p-col-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
+  </div>
+  <div class="p-grid">
+    <div class="p-col-12">
+      <p-table [value]="grades" [lazy]="true" (onLazyLoad)="aoMudarPagina($event)" [paginator]="true"
+        [responsive]="true" [totalRecords]="totalRegistros" [rows]="filtro.itensPorPagina" #tabela>
+        <ng-template pTemplate="header" emptymessage="Nenhum Registro Encotrado">
+          <tr>
+            <th style="width: 70px;">Codigo</th>
+            <th style="width: 80px;">Inicio</th>
+            <th style="width: 80px;">Fim</th>
+            <th>Descrição</th>
+            <th style="width: 80px;">Qt</th>
+            <th style="width: 45px;">Edit</th>
+            <th style="width: 45px;">Delete</th>
+          </tr>
+        </ng-template>
+        <ng-template let-grade pTemplate="body">
+          <tr>
+            <td>{{grade.codigo}}</td>
+            <td>{{grade.iniciograde}}</td>
+            <td>{{grade.fimgrade}}</td>
+            <td>{{grade.intervalo}}</td>
+            <td>{{grade.qtdeitensgrade}}</td>
+            <td>
+              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/grades', grade.codigo]"></a>
+            </td>
+            <td>
+              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                (click)="confirmaExclusao(grade)"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <div class="p-grid">
+    <div class="p-col-12">
+      <a pButton label="Nova Grade" pTooltip="Cadastrar Uma Nova Grade" tooltipPosition="top"
+        routerLink="/grades/nova"></a>
+    </div>
+  </div>
+</div>

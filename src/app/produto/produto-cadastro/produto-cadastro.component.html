@@ -1,0 +1,134 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+    <div class="p-grid">
+      <div class="p-col-12">
+        <h1 class="top-tela">Novo Produto</h1>
+      </div>
+      <div class="p-col-6 p-md-3 p-fluid" formGroupName="secao">
+        <label>Seção</label>
+        <p-dropdown name="secao" [options]="secoes" placeholder="Selecione"
+         formControlName="codigo"></p-dropdown>
+      </div>
+      <div class="p-col-6 p-md-3 p-fluid" formGroupName="Cor">
+        <label>Cor</label>
+        <p-dropdown name="cor" [options]="cores" placeholder="Selecione"
+         formControlName="codigo"></p-dropdown>
+      </div>
+
+      <div class="p-col-6 p-md-3 p-fluid" formGroupName="modelo">
+        <label>Modelo</label>
+        <p-dropdown name="modelo" [options]="modelos" placeholder="Selecione"
+         formControlName="codigo"></p-dropdown>
+      </div>
+      <div class="p-col-6 p-md-3 p-fluid" formGroupName="marca">
+        <label>Marca</label>
+        <p-dropdown name="marca" [options]="marcas" placeholder="Selecione"
+         formControlName="codigo"></p-dropdown>
+      </div>
+
+      <div class="p-col-6 p-md-3 p-fluid" formGroupName="grade">
+        <label>Grade</label>
+        <p-dropdown name="grade" [options]="grades" placeholder="Selecione"
+         formControlName="codigo"></p-dropdown>
+      </div>
+      <div class="p-col-6 p-md-3 p-fluid" formGroupName="unidade">
+        <label>Unidade</label>
+        <p-dropdown name="unidade" [options]="unidades" placeholder="Selecione"
+         formControlName="codigo"></p-dropdown>
+      </div>
+
+      <div class="p-col-6 p-md-3 p-fluid" formGroupName="localiza">
+        <label>Localização</label>
+        <p-dropdown name="localiza" [options]="localizacao" placeholder="Selecione"
+         formControlName="codigo"></p-dropdown>
+      </div>
+      <div class="p-col-6 p-md-3 p-fluid" formGroupName="fornecedor">
+        <label>Fornecedor</label>
+        <p-dropdown name="fornecedor" [options]="fornecedores" placeholder="Selecione"
+         formControlName="codigo"></p-dropdown>
+      </div>
+
+      <div class="p-col-12 p-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="descricao"
+          [(ngModel)]="produto.descricao"+[(ngModel)]="produto.secao"+[(ngModel)]="produto.cor"
+          #descricao="ngModel" required minlength="5">
+      </div>
+      <div class="p-col-6 p-fluid">
+        <label>Referencia</label>
+        <input pInputText type="text" name="referencia"
+          [(ngModel)]="produto.referencia"
+          #referencia="ngModel">
+      </div>
+      <div class="p-col-3 p-fluid">
+        <label>Codigo Barra</label>
+        <p-inputMask name="codigoBarra" [(ngModel)]="produto.codigoBarra"
+          #codigoBarra="ngModel"></p-inputMask>
+      </div>
+      <div class="p-col-3 p-fluid">
+          <label>NCMSH</label>
+          <input pInputText type="text" name="ncmsh"
+            [(ngModel)]="produto.ncmshProduto"
+            #ncmshProduto="ngModel">
+      </div>
+
+      <div class="p-col-4 p-fluid">
+        <label>Saldo Atual</label>
+        <p-InputNumber name="saldoAtual" [(ngModel)]="produto.saldoAtual" #saldoAtual="ngModel"></p-InputNumber>
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Saldo Minimo</label>
+        <p-InputNumber name="saldoMinimo" [(ngModel)]="produto.saldoMinimo" #saldoMinimo="ngModel"></p-InputNumber>
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Valor Custo</label>
+        <p-InputNumber name="valorCusto" [(ngModel)]="produto.valorCusto" #valorCusto="ngModel"></p-InputNumber>
+      </div>
+
+      <div class="p-col-4 p-fluid">
+        <label>Imposto</label>
+        <p-InputNumber name="valorImposto" [(ngModel)]="produto.valorImposto" #valorImposto="ngModel"></p-InputNumber>
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Frete</label>
+        <p-InputNumber name="valorFrete" [(ngModel)]="produto.valorFrete" #valorFrete="ngModel"></p-InputNumber>
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Desconto</label>
+        <p-InputNumber name="valorDesconto" [(ngModel)]="produto.valorDesconto" #valorDesconto="ngModel"></p-InputNumber>
+      </div>
+
+      <div class="p-col-4 p-fluid">
+        <label>Venda Vista</label>
+        <p-InputNumber name="vendaVista" [(ngModel)]="produto.vendaVista" #vendaVista="ngModel"></p-InputNumber>
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Venda Prazo</label>
+        <p-InputNumber name="vendaPrazo" [(ngModel)]="produto.vendaPrazo" #vendaPrazo="ngModel"></p-InputNumber>
+      </div>
+      <div class="p-col-4 p-fluid">
+        <label>Venda Promoção</label>
+        <p-InputNumber name="vendaPromocao" [(ngModel)]="produto.vendaPromocao" #vendaPromocao="ngModel"></p-InputNumber>
+      </div>
+
+      <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple"
+      accept="image/*"></p-fileUpload>
+
+     <div class="p-col-12 p-fluid">
+        <label>Informações</label>
+        <input pInputText type="text" name="informacoes"
+          [(ngModel)]="produto.informacoes"
+          #informacoes="ngModel">
+      </div>
+      <div class="p-col-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Nova" class="ui-button-info"
+          (click)="nova(f)"></button>
+
+        <a routerLink="/fornecedores">Voltar para a pesquisa</a>
+      </div>
+    </div>
+
+  </form>
+</div>

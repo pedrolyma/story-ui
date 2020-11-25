@@ -1,0 +1,48 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+    <div class="p-grid">
+      <!-- <div class="p-col-12"> -->
+        <h1 class="top-tela">Nova Grade</h1>
+      <!-- </div> -->
+
+      <div class="p-col-4 p-md-2 p-fluid">
+        <label>Inicio Grade</label>
+        <input pInputText type="text" name="inicioGrade"
+          [(ngModel)]="grade.inicioGrade"
+          #inicioGrade="ngModel">
+      </div>
+      <div class="p-col-4 p-md-2 p-fluid">
+        <label>Final Grade</label>
+        <input pInputText type="text" name="finalGrade"
+          [(ngModel)]="grade.finalGrade"
+          #finalGrade="ngModel">
+      </div>
+      <div class="p-col-4 p-md-2 p-fluid">
+        <label>Qt Itens na Grade</label>
+        <input pInputText type="text" name="qtdeItensGrade"
+          [(ngModel)]="grade.qtdeItensGrade"
+          #qtdeItensGrade="ngModel">
+      </div>
+      <div class="p-col-12 p-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="intervalo"
+          [(ngModel)]="grade.intervalo"
+          #intervalo="ngModel" required minlength="5">
+
+        <app-message [control]="intervalo" error="required"
+          text="Informe a descrição"></app-message>
+        <app-message [control]="intervalo" error="minlength"
+          text="Mínimo de {{ intervalo.errors?.minlength?.requiredLength }} caracteres"></app-message>
+      </div>
+      <div class="p-col-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Nova" class="ui-button-info"
+          (click)="nova(f)"></button>
+
+        <a routerLink="/grades">Voltar para a pesquisa</a>
+      </div>
+    </div>
+
+  </form>
+</div>

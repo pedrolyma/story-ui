@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="p-grid">
+    <form (ngSubmit)="pesquisar()" autocomplete="off">
+      <!-- <div class="p-col-12"> -->
+      <h1 class="top-tela">LOCALIZAÇÕES</h1>
+      <!-- </div> -->
+      <div class="p-col-12 p-fluid">
+        <label style="display: block;">Descrição</label>
+        <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
+      </div>
+      <div class="p-col-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
+  </div>
+  <div class="p-grid">
+    <div class="p-col-12">
+      <p-table [value]="localizacoes" [lazy]="true" (onLazyLoad)="aoMudarPagina($event)" [paginator]="true" [rows]="5"
+        [totalRecords]="totalRegistros" #tabela>
+        <ng-template pTemplate="header" emptymessage="Nenhum Registro Encotrado">
+          <tr>
+            <th style="width: 60px;">Codigo</th>
+            <th>Descrição</th>
+            <th>Status</th>
+            <th style="width: 45px;">Edit</th>
+            <th style="width: 45px;">Delete</th>
+          </tr>
+        </ng-template>
+        <ng-template let-localiza pTemplate="body">
+          <tr>
+            <td>{{localiza.codigo}}</td>
+            <td>{{localiza.descricao}}</td>
+            <td>
+              <a href="javascript:;" [pTooltip]="localiza.statuslocaliza ? 'Desativar' : 'Ativar'" tooltipPosition="top"
+                (click)="alternarStatus(localiza)">
+                {{ localiza.statussecao ? 'Ativo' : 'Inativo' }}
+              </a>
+            </td>
+            <td>
+              <button pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/localizacao', localiza.codigo]"></button>
+            </td>
+            <td>
+              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                (click)="confirmaExclusao(localiza)"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <div class="p-grid">
+    <div class="p-col-12">
+      <button pButton label="Nova Localização" pTooltip="Cadastrar Uma Nova Localização" tooltipPosition="top"
+        routerLink="/localizacao/nova"></button>
+    </div>
+  </div>
+</div>

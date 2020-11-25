@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="p-grid">
+    <form (ngSubmit)="pesquisar()" autocomplete="off">
+      <!-- <div class="p-col-12"> -->
+        <h1 class="top-tela">SEÇÕES</h1>
+      <!-- </div> -->
+      <div class="p-col-12 p-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
+      </div>
+      <div class="p-col-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
+  </div>
+  <div class="p-grid">
+    <div class="p-col-12">
+      <p-table [value]="secoes" [responsive]="true" [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true"
+        [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
+        <!-- [showCurrentPageReport]="true" #tabela>
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]"#tabela> -->
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 60px;">Codigo</th>
+            <th>Descrição</th>
+            <th>Status</th>
+            <th style="width: 45px;">Edit</th>
+            <th style="width: 45px;">Delete</th>
+          </tr>
+        </ng-template>
+        <ng-template let-secao pTemplate="body">
+          <tr>
+            <td Class="col-codigo">{{ secao.codigo }}</td>
+            <td>{{ secao.descricao }}</td>
+            <td>
+              <a href="javascript:;" [pTooltip]="secao.statussecao ? 'Desativar' : 'Ativar'" tooltipPosition="top"
+                (click)="alternarStatus(secao)">
+                {{ secao.statussecao ? 'Ativo' : 'Inativo' }}
+              </a>
+            </td>
+            <td>
+              <!-- <p-button icon="pi pi-search" styleClass="p-button-success" [style]="{'margin-right': '.5em'}"></p-button>
+              <p-button icon="pi pi-pencil" styleClass="p-button-warning"></p-button> -->
+
+              <p-button icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/secoes', secao.codigo]"></p-button>
+            </td>
+            <td>
+              <p-button icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                (click)="confirmaExclusao(secao)"></p-button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6">Nenhum Registro Encontrado</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="p-col-12">
+      <a pButton label="Nova Seção" pTooltip="Cadastrar Uma Nova Seção" tooltipPosition="top"
+        routerLink="/secoes/nova"></a>
+    </div>
+  </div>
+</div>
+
