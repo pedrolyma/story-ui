@@ -18,11 +18,11 @@ export class FornecedorService {
   constructor(private http: HttpClient) { }
 
   pesquisar(filtro: FornecedorFiltro): Promise<any> {
-    const params = new HttpParams(); // HttpParams();
+    let params = new HttpParams(); // HttpParams();
     const headers = new HttpHeaders(); // .append('Authorization', 'basic aqui ');
 
-    params.set('pageNumber', filtro.pagina.toString());
-    params.set('pageSize', filtro.itensPorPagina.toString());
+    params = params.set('pageNumber', filtro.pagina.toString());
+    params = params.set('pageSize', filtro.itensPorPagina.toString());
 
     return this.http.get(`${this.fornecedorUrl}?`, { headers, params })
       .toPromise()

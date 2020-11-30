@@ -1,3 +1,4 @@
+import { PaginatorModule } from 'primeng/paginator';
 import { Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -17,11 +18,13 @@ import { ModeloModule } from './modelo/modelo.module';
 import { FornecedorModule } from './fornecedor/fornecedor.module';
 import { ProdutoModule } from './produto/produto.module';
 import { GradeModule } from './grade/grade.module';
+import { PedidosModule } from './pedidos/pedidos-pesquisa/pedidos.module';
 
 const routes: Routes = []
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,9 @@ const routes: Routes = []
     GradeModule,
     ModeloModule,
     ProdutoModule,
-    MenubarModule
+    MenubarModule,
+    PaginatorModule,
+    PedidosModule
     ],
   exports: [],
   providers: [],

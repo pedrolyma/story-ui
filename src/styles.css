@@ -41,9 +41,10 @@ body {
 } */
 
 .top-tela {
-  margin-top: -1em;
+  margin-top: -1.5em;
   text-align: right;
   margin-left: 28em;
+  padding-bottom: 15px;
 }
 
 .col-codigo {

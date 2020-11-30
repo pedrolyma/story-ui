@@ -32,6 +32,8 @@ export class NavbarComponent implements OnInit {
                   {label: 'Grades', icon: 'pi pi-bars', routerLink: '/grades'},
                   {label: 'Fornecedores', icon: 'pi pi-folder-open', routerLink: '/fornecedores'},
                   {label: 'Produtos', icon: 'pi pi-fw pi-plus', routerLink: '/produtos'},
+                  {label: 'Clientes', icon: 'pi pi-fw pi-plus', routerLink: '/clientes'},
+                  {label: 'Pedidos', icon: 'pi pi-bars', routerLink: '/pedidos'}
           ]
       },
       {
@@ -60,7 +62,8 @@ export class NavbarComponent implements OnInit {
           {label: 'Vendas', icon: 'pi pi-fw pi-refresh'}
       ]
   },
-    {label: 'SIGCOM-Sistema Gerenciador Comercial', styleClass: 'font-size: 25px,'}
+    {label: 'SIGCOM-Sistema Gerenciador Comercial', styleClass: 'font-size: 25px,'},
+    // {label: 'MENU'}
   ];
 
 

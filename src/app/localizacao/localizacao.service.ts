@@ -7,7 +7,7 @@ import { Localizacao } from '../model/Localizacao.model';
 export class LocalizacaoFiltro {
   descricao: string;
   pagina = 0;
-  itensPorPagina = 5;
+  itensPorPagina = 8;
 }
 
 @Injectable({
@@ -20,15 +20,15 @@ export class LocalizacaoService {
   constructor(private http: HttpClient) { }
 
    pesquisar(filtro: LocalizacaoFiltro): Promise<any> {
-    const params = new HttpParams();
+    let params = new HttpParams();
     const headers = new HttpHeaders();
 
-    params.set('page', filtro.pagina.toString());
-    params.set('size', filtro.itensPorPagina.toString());
+    params = params.set('page', filtro.pagina.toString());
+    params = params.set('size', filtro.itensPorPagina.toString());
 
-    if (filtro.descricao) {
-      params.set('descricao', filtro.descricao);
-    }
+    // if (filtro.descricao) {
+    //   params.set('descricao', filtro.descricao);
+    // }
     return this.http.get(`${this.localizacaoUrl}?`, { headers, params })
       .toPromise()
       .then(response => {

@@ -25,8 +25,8 @@
             <th>Descrição</th>
             <th style="width: 80px;">Status</th>
             <th>Seção</th>
-            <th style="width: 45px;">Edit</th>
-            <th style="width: 45px;">Delete</th>
+            <th style="width: 45px;"></th>
+            <th style="width: 53px;"></th>
           </tr>
         </ng-template>
         <ng-template let-modelo pTemplate="body">
@@ -55,6 +55,8 @@
     <div class="p-col-12">
       <a pButton label="Novo Modelo" pTooltip="Cadastrar Uma Novo Modelo" tooltipPosition="top"
         routerLink="/modelos/nova"></a>
+      <a pButton label="Voltar" pTooltip="Voltar para menu" tooltipPosition="top" class="buttonVoltar"
+        routerLink="/"></a>
     </div>
   </div>
 </div>

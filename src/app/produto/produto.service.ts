@@ -21,11 +21,11 @@ export class ProdutoService {
   constructor(private http: HttpClient) { }
 
    pesquisar(filtro: ProdutoFiltro): Promise<any> {
-    const params = new HttpParams();
+    let params = new HttpParams();
     const headers = new HttpHeaders(); // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    params.set('page', filtro.pagina.toString());
-    params.set('size', filtro.itensPorPagina.toString());
+    params = params.set('page', filtro.pagina.toString());
+    params = params.set('size', filtro.itensPorPagina.toString());
 
     if (filtro.descricao) {
       params.set('descricao', filtro.descricao);

@@ -38,8 +38,8 @@
                     <th>Agencia</th>
                     <th>Conta</th>
                     <th>Titular</th>
-                    <th style="width: 45px;">Edit</th>
-                    <th style="width: 45px;">delete</th>
+                    <th style="width: 45px;"></th>
+                    <th style="width: 53px;"></th>
                 </tr>
             </ng-template>
             <ng-template let-fornecedor pTemplate="body" >
@@ -81,6 +81,7 @@
         <div class="p-col-12">
           <a pButton label="Novo Fornecedor" pTooltip="Cadastrar Um Novo Fornecedor"
           tooltipPosition="top" routerLink="/fornecedores/nova"></a>
+          <a bButton label="Voltar" pTooltip="Voltar para menu" tooltipPosition="top" class="buttonVoltar" routerLink="/"></a>
         </div>
       </div>
     </form>

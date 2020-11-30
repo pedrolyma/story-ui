@@ -1,36 +1,38 @@
+import { PedidoFiltro } from './pedidos.service';
 import { ToastyService } from 'ng2-toasty';
-import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { ErrorhandlerService } from './../../core/error-handler.service';
-import { MarcaFiltro, MarcaService } from './../marca.service';
+import { PedidosService } from './pedidos.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-marca-pesquisa',
-  templateUrl: './marca-pesquisa.component.html',
-  styleUrls: ['./marca-pesquisa.component.css']
+  selector: 'app-pedidos-pesquisa',
+  templateUrl: './pedidos-pesquisa.component.html',
+  styleUrls: ['./pedidos-pesquisa.component.css']
 })
-export class MarcaPesquisaComponent implements OnInit {
+export class PedidosPesquisaComponent implements OnInit {
+
   totalRegistros = 0;
-  filtro = new MarcaFiltro();
-  marcas = [];
+  filtro = new PedidoFiltro();
+  pedidos = [];
   @ViewChild('tabela') grid;
 
   constructor(
-    private marcaService: MarcaService,
+    private pedidoService: PedidosService,
     private errorHandler: ErrorhandlerService,
     private confirmation: ConfirmationService,
     private toasty: ToastyService
-              ) { }
+    ) { }
 
   ngOnInit(): void {
   }
 
- pesquisar(pagina = 0) {
+  pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
-    this.marcaService.pesquisar(this.filtro)
+    this.pedidoService.pesquisar(this.filtro)
     .then(resultado => {
       this.totalRegistros = resultado.total;
-      this.marcas = resultado.marcas;
+      this.pedidos = resultado.produtos;
     })
     .catch(erro => this.errorHandler.handle(erro));
   }
@@ -40,17 +42,17 @@ export class MarcaPesquisaComponent implements OnInit {
     this.pesquisar(pagina);
   }
 
-  confirmarExclusao(marca: any) {
+  confirmarExclusao(pedido: any) {
     this.confirmation.confirm({
       message: 'Tem certeza que deseja excluir?',
       accept: () => {
-        this.excluir(marca);
+        this.excluir(pedido);
       }
     });
   }
 
-  excluir(marca: any) {
-    this.marcaService.excluir(marca.codigo)
+  excluir(pedido: any) {
+    this.pedidoService.excluir(pedido.codigo)
       .then(() => {
         if (this.grid.first === 0) {
           this.pesquisar();
@@ -58,20 +60,20 @@ export class MarcaPesquisaComponent implements OnInit {
           this.grid.first = 0;
         }
 
-        this.toasty.success('Marca excluída com sucesso!');
+        this.toasty.success('Pedido excluída com sucesso!');
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-alternarStatus(marca: any): void {
-  const novoStatus = !marca.statusmarca;
+alternarStatus(pedido: any): void {
+  const novoStatus = !pedido.ativo;
 
-  this.marcaService.mudarStatus(marca.codigo, novoStatus)
+  this.pedidoService.mudarStatus(pedido.codigo, novoStatus)
     .then(() => {
       const acao = novoStatus ? 'ativada' : 'desativada';
 
-      marca.statusmarca = novoStatus;
-      this.toasty.success(`Marca ${acao} com sucesso!`);
+      pedido.ativo = novoStatus;
+      this.toasty.success(`Pedido ${acao} com sucesso!`);
     })
     .catch(erro => this.errorHandler.handle(erro));
 }

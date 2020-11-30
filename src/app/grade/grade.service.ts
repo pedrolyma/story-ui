@@ -19,11 +19,11 @@ export class GradeService {
   constructor(private http: HttpClient) { }
 
   pesquisar(filtro: GradeFiltro): Promise<any> {
-    const params = new HttpParams(); // HttpParams();
+    let params = new HttpParams(); // HttpParams();
     const headers = new HttpHeaders(); // .append('Authorization', 'basic aqui ');
 
-    params.set('pageNumber', filtro.pagina.toString());
-    params.set('pageSize', filtro.itensPorPagina.toString());
+    params = params.set('pageNumber', filtro.pagina.toString());
+    params = params.set('pageSize', filtro.itensPorPagina.toString());
 
     return this.http.get(`${this.gradeUrl}?`, { headers, params })
       .toPromise()

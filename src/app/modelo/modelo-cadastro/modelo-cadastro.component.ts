@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorhandlerService } from 'src/app/core/error-handler.service';
 import { SecaoService } from 'src/app/secao/secao.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-modelo-cadastro',
@@ -28,7 +29,8 @@ export class ModeloCadastroComponent implements OnInit {
     private router: Router,
     private title: Title,
     private secaoService: SecaoService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -64,7 +66,8 @@ export class ModeloCadastroComponent implements OnInit {
   adicionarModelo(form: FormControl) {
     this.modeloService.adicionar(this.modelo)
       .then(modeloAdicionado => {
-        this.toasty.success('Modelo adicionada com sucesso!');
+        this.messageService.add({ severity: 'success', detail: 'Modelo adicionado com sucesso!' });
+        // this.toasty.success('Modelo adicionada com sucesso!');
         this.router.navigate(['/modelos', modeloAdicionado.codigo]);
       })
       .catch(erro => this.errorHandler.handle(erro));

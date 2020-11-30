@@ -4,13 +4,13 @@
       <!-- <div class="p-col-12"> -->
       <h1 class="top-tela">LOCALIZAÇÕES</h1>
       <!-- </div> -->
-      <div class="p-col-12 p-fluid">
+      <!-- <div class="p-col-12 p-fluid">
         <label style="display: block;">Descrição</label>
         <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
       </div>
       <div class="p-col-12">
         <button pButton type="submit" label="Pesquisar"></button>
-      </div>
+      </div> -->
     </form>
   </div>
   <div class="p-grid">
@@ -22,8 +22,8 @@
             <th style="width: 60px;">Codigo</th>
             <th>Descrição</th>
             <th>Status</th>
-            <th style="width: 45px;">Edit</th>
-            <th style="width: 45px;">Delete</th>
+            <th style="width: 45px;"></th>
+            <th style="width: 53px;"></th>
           </tr>
         </ng-template>
         <ng-template let-localiza pTemplate="body">
@@ -51,8 +51,9 @@
   </div>
   <div class="p-grid">
     <div class="p-col-12">
-      <button pButton label="Nova Localização" pTooltip="Cadastrar Uma Nova Localização" tooltipPosition="top"
-        routerLink="/localizacao/nova"></button>
+      <a pButton label="Nova Localização" pTooltip="Cadastrar Uma Nova Localização" tooltipPosition="top"
+        routerLink="/localizacao/nova"></a>
+      <a pButton label="Voltar" pTooltip="Voltar para menu" tooltipPosition="top" class="buttonVoltar" routerLink="/"></a>
     </div>
   </div>
 </div>

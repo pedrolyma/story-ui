@@ -1,17 +1,7 @@
 <div class="container">
   <div class="p-grid">
     <form (ngSubmit)="pesquisar()" autocomplete="off">
-
-      <!-- <div class="p-col-12"> -->
       <h1 class="top-tela">CORES</h1>
-      <!-- </div> -->
-      <div class="p-col-12 p-fluid">
-        <label style="display: block;">Descrição</label>
-        <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
-      </div>
-      <div class="p-col-12">
-        <button pButton type="submit" label="Pesquisar"></button>
-      </div>
     </form>
   </div>
   <div class="p-grid">
@@ -23,7 +13,7 @@
             <th style="width: 70px;">Codigo</th>
             <th>Descrição</th>
             <th style="width: 45px;">Edit</th>
-            <th style="width: 45px;">Delete</th>
+            <th style="width: 53px;">Delete</th>
           </tr>
         </ng-template>
         <ng-template let-cor pTemplate="body">
@@ -46,6 +36,7 @@
   <div class="p-grid">
     <div class="p-col-12">
       <a pButton label="Nova Cor" pTooltip="Cadastrar Uma Nova Cor" tooltipPosition="top" routerLink="/cores/nova"></a>
+      <a pButton label="Voltar" pTooltip="Voltar para o Menu" tooltipPositon="top" class="buttonVoltar" routerLink="/"></a>
     </div>
   </div>
 </div>

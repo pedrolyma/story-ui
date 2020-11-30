@@ -4,13 +4,14 @@
       <!-- <div class="p-col-12"> -->
         <h1 class="top-tela">SEÇÕES</h1>
       <!-- </div> -->
-      <div class="p-col-12 p-fluid">
+      <div class="p-col-10">
         <label>Descrição</label>
-        <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
+        <input style="width: 600px;" pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
+        <button pButton type="submit" label=" Pesquisar"></button>
       </div>
-      <div class="p-col-12">
+      <!-- <div class="p-col-2 p-fluid">
         <button pButton type="submit" label="Pesquisar"></button>
-      </div>
+      </div> -->
     </form>
   </div>
   <div class="p-grid">
@@ -23,9 +24,9 @@
           <tr>
             <th style="width: 60px;">Codigo</th>
             <th>Descrição</th>
-            <th>Status</th>
-            <th style="width: 45px;">Edit</th>
-            <th style="width: 45px;">Delete</th>
+            <th style="width: 80px;">Status</th>
+            <th style="width: 45px;"></th>
+            <th style="width: 53px;"></th>
           </tr>
         </ng-template>
         <ng-template let-secao pTemplate="body">
@@ -61,6 +62,8 @@
     <div class="p-col-12">
       <a pButton label="Nova Seção" pTooltip="Cadastrar Uma Nova Seção" tooltipPosition="top"
         routerLink="/secoes/nova"></a>
+      <a pButton label="Voltar" pTooltip="Voltar para menu" tooltipPosition="top" class="buttonVoltar"
+        routerLink="/"></a>
     </div>
   </div>
 </div>

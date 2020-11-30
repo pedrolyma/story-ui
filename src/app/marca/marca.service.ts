@@ -18,10 +18,10 @@ export class MarcaService {
   constructor(private http: HttpClient) { }
 
   pesquisar(filtro: MarcaFiltro): Promise<any> {
-    const params = new HttpParams(); // HttpParams();
+    let params = new HttpParams(); // HttpParams();
     const headers = new HttpHeaders(); // .append('Authorization', 'basic aqui ');
-    params.set('page', filtro.pagina.toString());
-    params.set('size', filtro.itensPorPagina.toString());
+    params = params.set('page', filtro.pagina.toString());
+    params = params.set('size', filtro.itensPorPagina.toString());
 
     if (filtro.descricao) {
       params.set('descricao', filtro.descricao);
@@ -52,8 +52,10 @@ export class MarcaService {
       .then(response => response['content']);
   }
 
-  mudarStatus(codigo: number, ativo: boolean): Promise<void> {
-    return this.http.put(`${this.marcaUrl}/${codigo}/ativo`, ativo)
+  mudarStatus(codigo: number, statusmarca: boolean): Promise<void> {
+    const headers = new HttpHeaders()
+    .append('Content-Type', 'application/json');
+    return this.http.put(`${this.marcaUrl}/${codigo}/statusmarca`, statusmarca, { headers })
       .toPromise()
       .then(() => null);
   }

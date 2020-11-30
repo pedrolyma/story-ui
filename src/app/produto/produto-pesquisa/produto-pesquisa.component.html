@@ -25,8 +25,8 @@
             <th>Descrição</th>
             <th>Referencia</th>
             <th style="width: 150px;">Codigo Barra</th>
-            <th style="width: 45px;">Edit</th>
-            <th style="width: 45px;">Delete</th>
+            <th style="width: 45px;"></th>
+            <th style="width: 53px;"></th>
           </tr>
         </ng-template>
         <ng-template let-produto pTemplate="body">
@@ -35,6 +35,12 @@
             <td>{{ produto.descricao }}</td>
             <td>{{ produto.referencia }}</td>
             <td>{{ produto.codigoBarra }}</td>
+            <td>
+              <a href="javascript:;" [pTooltip]="produto.statusproduto ? 'Desativar' : 'Ativar'" tooltipPosition="top"
+                (click)="alternarStatus(produto)">
+                {{ produto.statusproduto ? 'Ativo' : 'Inativo' }}
+              </a>
+            </td>
             <td>
               <button pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
                 [routerLink]="['/produtos', produto.codigo]"></button>
@@ -57,6 +63,7 @@
     <div class="p-col-12">
       <a pButton label="Novo Produto" pTooltip="Cadastrar Um Novo Produto" tooltipPosition="top"
         routerLink="/produtos/nova"></a>
+      <a pButton label="Voltar" pTooltip="Voltar para menu" tooltipPosition="top" class="buttonVoltar" routerLink="/"></a>
     </div>
   </div>
 </div>

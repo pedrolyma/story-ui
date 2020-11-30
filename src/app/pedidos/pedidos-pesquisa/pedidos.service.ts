@@ -1,26 +1,25 @@
-import { Secoes } from '../model/Secoes.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import { TagContentType } from '@angular/compiler';
+import { Pedidos } from 'src/app/model/pedidos.model';
 
 // definindo contrato
-export class SecaoFiltro {
+export class PedidoFiltro {
   descricao: string;
   pagina = 0;
-  itensPorPagina = 8;
+  itensPorPagina = 5;
 }
 
 @Injectable({
    providedIn: 'root'
  })
 
-export class SecaoService {
-  secaoUrl = 'http://localhost:8080/secoes';
+export class PedidosService {
+  pedidoUrl = 'http://localhost:8080/pedidos';
 
   constructor(private http: HttpClient) { }
 
-   pesquisar(filtro: SecaoFiltro): Promise<any> {
+   pesquisar(filtro: PedidoFiltro): Promise<any> {
     let params = new HttpParams();
     const headers = new HttpHeaders(); // .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
@@ -30,52 +29,51 @@ export class SecaoService {
     if (filtro.descricao) {
       params.set('descricao', filtro.descricao);
     }
-    return this.http.get(`${this.secaoUrl}?`, { params })
+    return this.http.get(`${this.pedidoUrl}?`, { headers, params })
       .toPromise()
       .then(response => {
-        const secoes = response['content']
-        const resultado = { secoes, total: response['totalElements']
+        const pedidos = response['content']
+        const resultado = { pedidos, total: response['totalElements']
         };
         return resultado;
       });
   }
 
   excluir(codigo: number): Promise<void> {
-    return this.http.delete(`${this.secaoUrl}/${codigo}`)
+    return this.http.delete(`${this.pedidoUrl}/${codigo}`)
       .toPromise()
       .then(() => null);
   }
 
   listarTodas(): Promise<any> {
-    return this.http.get(this.secaoUrl)
+    return this.http.get(this.pedidoUrl)
       .toPromise()
       .then(response => response['content']);
   }
 
   mudarStatus(codigo: number, ativo: boolean): Promise<void> {
-    return this.http.put(`${this.secaoUrl}/${codigo}/ativo`, ativo)
+    return this.http.put(`${this.pedidoUrl}/${codigo}/ativo`, ativo)
       .toPromise()
       .then(() => null);
   }
 
-  adicionar(secao: Secoes): Promise<Secoes> {
+  adicionar(pedido: Pedidos): Promise<Pedidos> {
     const headers = new HttpHeaders().append('Content-Type', 'application/json');
-    return this.http.post<Secoes>(this.secaoUrl, JSON.stringify(secao), { headers })
-//    return this.http.post(this.secaoUrl, JSON.stringify(secao))
+    return this.http.post<Pedidos>(this.pedidoUrl, JSON.stringify(pedido), { headers })
       .toPromise()
       .then(response => response['content']);
   }
 
-  atualizar(secao: Secoes): Promise<Secoes> {
-    return this.http.put(`${this.secaoUrl}/${secao.codigo}`,
-        JSON.stringify(secao))
+  atualizar(pedido: Pedidos): Promise<Pedidos> {
+    return this.http.put(`${this.pedidoUrl}/${pedido.codigo}`,
+        JSON.stringify(pedido))
       .toPromise()
-      .then(response => response['content'] as Secoes);
+      .then(response => response['content'] as Pedidos);
   }
 
-  buscarPorCodigo(codigo: number): Promise<Secoes> {
-    return this.http.get(`${this.secaoUrl}/${codigo}`)
+  buscarPorCodigo(codigo: number): Promise<Pedidos> {
+    return this.http.get(`${this.pedidoUrl}/${codigo}`)
       .toPromise()
-      .then(response => response['content'] as Secoes);
+      .then(response => response['content'] as Pedidos);
   }
 }

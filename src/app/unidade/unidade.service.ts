@@ -5,7 +5,7 @@ import { Unidades } from '../model/Unidade.model';
 
 export class UnidadeFiltro {
   pagina = 0;
-  itensPorPagina = 5;
+  itensPorPagina = 8;
 }
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,11 @@ export class UnidadeService {
   constructor(private http: HttpClient) { }
 
   pesquisar(filtro: UnidadeFiltro): Promise<any> {
-    const params = new HttpParams(); // HttpParams();
+    let params = new HttpParams(); // HttpParams();
     const headers = new HttpHeaders(); // .append('Authorization', 'basic aqui ');
 
-    params.set('pageNumber', filtro.pagina.toString());
-    params.set('pageSize', filtro.itensPorPagina.toString());
+    params = params.set('page', filtro.pagina.toString());
+    params = params.set('size', filtro.itensPorPagina.toString());
 
     return this.http.get(`${this.unidadeUrl}?`, { headers, params })
       .toPromise()

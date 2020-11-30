@@ -1,5 +1,12 @@
-.top-tela {
+/* .top-tela {
   margin-top: -1em;
   text-align: right;
   margin-right: 3em;
+  margin-bottom: 15px;
+} */
+
+.buttonVoltar {
+  position: relative;
+  margin: 5px;
+  top: 5px;
 }

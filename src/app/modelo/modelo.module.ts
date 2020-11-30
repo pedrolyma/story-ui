@@ -13,9 +13,10 @@ import { ModeloPesquisaComponent } from './modelo-pesquisa/modelo-pesquisa.compo
 import { ModeloRoutingModule } from './modelo-routing.module';
 import { ModeloService } from './modelo.service';
 import { DropdownModule } from 'primeng/dropdown';
+import { SharedModule } from 'primeng/api';
 
 @NgModule({
-  declarations: [ ModeloPesquisaComponent, ModeloCadastroComponent],
+
   imports: [
     CommonModule,
     FormsModule,
@@ -27,8 +28,13 @@ import { DropdownModule } from 'primeng/dropdown';
     ModeloRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    SharedModule,
     DropdownModule
   ],
+  declarations: [
+     ModeloPesquisaComponent,
+     ModeloCadastroComponent],
+
   providers: [ModeloService]
 
 })
